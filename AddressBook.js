@@ -147,9 +147,24 @@ function addContact(...params) {
     
 }
 
+function editContact(...params){
+    firstname = params[0];
+    lastname = params[1]; 
+    let index = addressBook.findIndex(x=>x.firstName == firstname && x.lastName == lastname);
+    let newContact;
+    try{
+    newContact = new Contact(params[0],params[1],params[2],params[3],params[4],params[5],params[6],params[7]);
+    }catch(e){
+        console.error(e);
+    }
+    addressBook[index] = newContact;
+}
+
 addContact("Tony","Stark","10880 Malibu Point 90265","New York City","New York",10001,9876432387,"tonystark@Yahoo.com");
 addContact("Steve","Rogers","569 Leaman Place Brooklyn Heights","New York City","New York",11212,7777979699,"steverogers@outlook.com");
 addContact("Bruce","Banner","10 Banner Residency, Dayton, Ohio","Dayton","Ohio",45377,9999999999,"bannerbruce@gmail.com");
 addContact("Barry","Allen","Allen Recedency Central City","Central City","Missouri",42330,7654321299,"allen@yahoo.com");
 addContact("Shang","Chi","Henan province Peoples Republic of China","Zhengzhou","Henan",12121,5643215699,"shang@gmail.com");
+
+editContact("Shang","Chi","Henan province, Peoples Republic, China","Zhengzhou","Henan",12345,7823215699,"shang@gmail.com");
 console.log(addressBook.toString())
