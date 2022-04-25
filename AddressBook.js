@@ -135,6 +135,7 @@ class Contact{
 
 }
 
+// AddressBook Array
 let addressBook = new Array();
 
 function addContact(...params) {
@@ -198,26 +199,37 @@ function getContactsCountByCity(city,array){
     return count;
 }
 
+function sortContactsByName(array){
+    array.sort((a,b)=> (a.firstName>b.firstName) ? 1 : ((a.firstName<b.firstName)? -1 : 0));
+    return array;
+}
+
+// Adding contacts and validating with regex
 addContact("Tony","Stark","10880 Malibu Point 90265","New York City","New York",10001,9876432387,"tonystark@Yahoo.com");
 addContact("Steve","Rogers","569 Leaman Place Brooklyn Heights","New York City","New York",11212,7777979699,"steverogers@outlook.com");
 addContact("Bruce","Banner","10 Banner Residency, Dayton, Ohio","Dayton","Ohio",45377,9999999999,"bannerbruce@gmail.com");
 addContact("Barry","Allen","Allen Recedency Central City","Central City","Missouri",42330,7654321299,"allen@yahoo.com");
 addContact("Shang","Chi","Henan province Peoples Republic of China","Zhengzhou","Henan",12121,5643215699,"shang@gmail.com");
 
+// Editing a contact
 editContact("Shang","Chi","Henan province, Peoples Republic, China","Zhengzhou","Henan",12345,7823215699,"shang@gmail.com");
 console.log(addressBook.toString());
 
+// Deleting a contact
 deleteContact("Shang","Chi");
 console.log(addressBook.toString());
 
+//Find no of contacts in addressBook
 let noOfContacts = getNoOfContacts(addressBook);
 console.log("Total no of contacts : "+noOfContacts);
 
+//Ensuring no duplicate entry
 addContact("Bruce","Banner","10 Banner Residency, Dayton, Ohio","Dayton","Ohio",45377,9999999999,"bannerbruce@gmail.com");
 
 noOfContacts = getNoOfContacts(addressBook);
 console.log("Total no of contacts : "+noOfContacts);
 
+//Search a person in a city
 let City = "New York City";
 let name = "Tony Stark";
 let isPersonPresent = searchContactInCity(City,name,addressBook);
@@ -226,6 +238,7 @@ console.log("The person "+name+" is found in the city "+City);
 else
 console.log("The person "+name+" is not found in the city "+City);
 
+//View persons in a city
 City = "New York City";
 let contacts = viewContactsByCity(City,addressBook);
 if(contacts.length>0)
@@ -233,6 +246,11 @@ console.log("The people in the city "+City+" are :"+contacts);
 else
 console.log("No people found in the city");
 
+//Getting no of contacts
 City = "New York City";
 let contactsCount = getContactsCountByCity(City,addressBook);
 console.log("The no of people in the city "+City+" is : "+contactsCount);
+
+//Sorting contacts by name
+addressBook = sortContactsByName(addressBook);
+console.log(addressBook.toString());
