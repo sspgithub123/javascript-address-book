@@ -188,6 +188,11 @@ function searchContactInCity(city,name,array){
     return true;
 }
 
+function viewContactsByCity(city,array){
+    let contacts = array.filter(e=>e.city == city).map(e=>e.firstName+" "+e.lastName);
+    return contacts;
+}
+
 addContact("Tony","Stark","10880 Malibu Point 90265","New York City","New York",10001,9876432387,"tonystark@Yahoo.com");
 addContact("Steve","Rogers","569 Leaman Place Brooklyn Heights","New York City","New York",11212,7777979699,"steverogers@outlook.com");
 addContact("Bruce","Banner","10 Banner Residency, Dayton, Ohio","Dayton","Ohio",45377,9999999999,"bannerbruce@gmail.com");
@@ -215,3 +220,10 @@ if(isPersonPresent==true)
 console.log("The person "+name+" is found in the city "+City);
 else
 console.log("The person "+name+" is not found in the city "+City);
+
+City = "New York City";
+let contacts = viewContactsByCity(City,addressBook);
+if(contacts.length>0)
+console.log("The people in the city "+City+" are :"+contacts);
+else
+console.log("No people found in the city");
