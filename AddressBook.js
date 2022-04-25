@@ -138,11 +138,19 @@ class Contact{
 let addressBook = new Array();
 
 function addContact(...params) {
-    try{
-    let newContact = new Contact(params[0],params[1],params[2],params[3],params[4],params[5],params[6],params[7]);
-    addressBook.push(newContact);
-    }catch(e){
-        console.error(e);
+    firstname = params[0];
+    lastname = params[1]; 
+    let countOfPersons = addressBook.filter(x=>x.firstName == firstname && x.lastName == lastname).reduce((totalPeople,e)=>totalPeople+1,0);
+    if (countOfPersons==0){
+        try{
+        let newContact = new Contact(params[0],params[1],params[2],params[3],params[4],params[5],params[6],params[7]);
+        addressBook.push(newContact);
+        }catch(e){
+            console.error(e);
+        }
+    }
+    else{
+        console.log("The Contact with name already exists");
     }
     
 }
@@ -185,4 +193,9 @@ deleteContact("Shang","Chi");
 console.log(addressBook.toString());
 
 let noOfContacts = getNoOfContacts(addressBook);
+console.log("Total no of contacts : "+noOfContacts);
+
+addContact("Bruce","Banner","10 Banner Residency, Dayton, Ohio","Dayton","Ohio",45377,9999999999,"bannerbruce@gmail.com");
+
+noOfContacts = getNoOfContacts(addressBook);
 console.log("Total no of contacts : "+noOfContacts);
