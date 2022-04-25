@@ -193,6 +193,11 @@ function viewContactsByCity(city,array){
     return contacts;
 }
 
+function getContactsCountByCity(city,array){
+    let count = array.filter(e=>e.city == city).reduce((totalCount,e)=>totalCount+1,0);
+    return count;
+}
+
 addContact("Tony","Stark","10880 Malibu Point 90265","New York City","New York",10001,9876432387,"tonystark@Yahoo.com");
 addContact("Steve","Rogers","569 Leaman Place Brooklyn Heights","New York City","New York",11212,7777979699,"steverogers@outlook.com");
 addContact("Bruce","Banner","10 Banner Residency, Dayton, Ohio","Dayton","Ohio",45377,9999999999,"bannerbruce@gmail.com");
@@ -227,3 +232,7 @@ if(contacts.length>0)
 console.log("The people in the city "+City+" are :"+contacts);
 else
 console.log("No people found in the city");
+
+City = "New York City";
+let contactsCount = getContactsCountByCity(City,addressBook);
+console.log("The no of people in the city "+City+" is : "+contactsCount);
